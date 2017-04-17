@@ -18,26 +18,33 @@
               </p>
               <label class="label">ลิ้งหน้าปกอัมบั้ม ขนาด 300 X 300</label>
               <p class="control">
-                <input class="input" type="text" placeholder="https://xxx.jpg" v-model="data.img">
+                <input class="input" type="text" placeholder="https://xxx.jpg" v-model="img">
               </p>
               <hr>
+              <span class="tag is-success" style="font-size: 18px;" v-show="img"> Preview </span>
+              <img :src="img" v-show="img" width="300" height="300">
+              <!-- preview -->
+
               <label class="label">Add youtube playlist</label>
 
-              <div v-for="show in tracks">
-                {{show.song}}
-                {{show.youtubeID}}
-              </div>
 
               <p class="control">
                 <input class="input" type="text" placeholder="ชื่อเพลง" v-model="data.song">
                 <input class="input" type="text" placeholder="link youtube" v-model="data.youtubeID">
                 <hr>
-                 <span class="tag is-danger" style="float: right;" @click="addTrack(data.song, data.youtubeID)">Add</span>
+                 <span class="tag is-danger" style="float: right; cursor: pointer;" @click="addTrack(data.song, data.youtubeID)">Add</span>
               </p>
               <br>
+
+              <div v-for="show in tracks">
+                <span class="tag is-success" style="font-size: 18px;">{{show.song}}</span>
+                <span class="tag is-danger" style="font-size: 18px;">{{show.youtubeID}}</span>
+                <button class="delete" @click="delTrack(show.id)"></button>
+              </div>
               <hr>
+
               <p class="control">
-                <button class="button" style="background: rgb(208, 1, 74); color: white;">Create</button>
+                <button class="button" style="background: rgb(208, 1, 74); color: white;" @click="uploadAlbum()">Create</button>
                 <button class="button is-default">Cancel</button>
               </p>
             </div>
@@ -58,17 +65,31 @@ export default {
     return {
       artist: [],
       data: {},
-      tracks: []
+      tracks: [],
+      img: ''
     }
   },
   methods: {
     addTrack (song, youtube) {
       let data = {
+        id: '_' + Math.random().toString(36).substr(2, 9),
         song: song,
         youtubeID: youtube
       }
-      console.log(data)
       this.tracks.push(data)
+    },
+    delTrack (id) {
+      let index = this.tracks.findIndex(i => i.id === id)
+      this.tracks.splice(index, 1)
+    },
+    uploadAlbum () {
+      let data = {
+        artist: this.data.artist,
+        album: this.data.album,
+        img: this.img,
+        tracks: this.tracks
+      }
+      console.log(data)
     }
   }
 }
