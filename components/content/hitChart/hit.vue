@@ -19,8 +19,8 @@
               <div class="content">
                 <p>
                   <strong>{{show.artist}} </strong>
-                  <small></small>
-                  <small style="float:right;">#1</small>
+                  <small>{{show.song}}</small>
+                  <small style="float:right;">Vote {{show.vote}}</small>
                 </p> My Voice Deluxe Album
               </div>
             </div>
@@ -49,18 +49,23 @@ export default {
       'listAlbum'
     ]),
     sort () {
-      let detail = []
-      let list = this.listAlbum.map(item => item.tracks).map(i => {
-        let arr = {
-          id: i.id,
-          song: i.song,
-          vote: i.vote,
-          youtubeID: i.youtubeID
-        }
-        return arr
+      let rank = []
+      this.listAlbum.find(item => {
+        item.tracks.map(i => {
+          let arr = {
+            id: i.id,
+            artist: i.artist,
+            album: i.album,
+            img: i.img,
+            song: i.song,
+            vote: i.vote,
+            youtubeID: i.youtubeID
+          }
+          rank.push(arr)
+        })
       })
-      console.log(list)
-      return this.data
+      console.log(rank)
+      return rank
     }
   }
 }
