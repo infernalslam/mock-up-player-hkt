@@ -118,9 +118,13 @@ export default {
         tracks: this.tracks
       }
       db.push(data)
-      data = {}
       this.modalShow = true
       console.log(this.modalShow)
+      this.data.artist = ''
+      this.data.album = ''
+      this.data.dec = ''
+      this.img = ''
+      this.tracks = []
     }
   },
   mounted () {

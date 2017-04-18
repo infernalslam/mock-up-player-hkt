@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapActions } from 'vuex'
 import headertop from './header/header'
 import headerSub from './header/subHeader'
 import titleHeader from './header/titleHeader'
@@ -24,6 +26,23 @@ import player from './player/player.vue'
 
 export default {
   name: 'App',
+  mounted () {
+    var vm = this
+    let setData = []
+    axios.get('https://fir-auth-12e52.firebaseio.com/data.json').then(res => {
+      for (var index in res.data) {
+        if (res.data.hasOwnProperty(index)) {
+          setData.push(res.data[index])
+        }
+      }
+    })
+    vm.getAlbum(setData)
+  },
+  methods: {
+    ...mapActions([
+      'getAlbum'
+    ])
+  },
   components: {
     headertop,
     headerSub,
