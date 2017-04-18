@@ -5,7 +5,13 @@
   "author": "infernalslam <infernal-slam@hotmail.com>",
   "private": true,
   "dependencies": {
-    "nuxt": "latest"
+    "axios": "^0.16.1",
+    "firebase": "^3.7.8",
+    "nuxt": "latest",
+    "promise-polyfill": "^6.0.2",
+    "vex-js": "^3.1.1",
+    "vue-bulma-modal": "^1.0.1",
+    "vue-msgbox": "^0.2.14"
   },
   "scripts": {
     "dev": "nuxt",

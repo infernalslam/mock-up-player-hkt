@@ -1,6 +1,6 @@
 <template>
 <div>
-  <section class="hero">
+  <section class="hero" style="border-bottom: 6px solid black;">
     <div class="hero-body">
       <div class="container">
         <h1 class="title">สร้าง Playlist เป็นของตัวเองได้เลย</h1>
