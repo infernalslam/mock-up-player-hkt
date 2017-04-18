@@ -23,7 +23,6 @@ import listSide2 from './content/side2/lists.vue'
 import listSide3 from './content/side3/lists.vue'
 import hit from './content/hitChart/hit.vue'
 import player from './player/player.vue'
-
 export default {
   name: 'App',
   mounted () {
